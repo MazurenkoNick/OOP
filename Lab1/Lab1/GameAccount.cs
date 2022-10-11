@@ -55,8 +55,10 @@ namespace Lab1
         public void WinGame(GameAccount opponent, int rating)
         {
             // handle possible edge cases
-            if (opponent == null || opponent == this)
-                throw new ArgumentNullException("Opponent Cannot Be Null | You Cannot Play With Yourself");
+            if (opponent == null)
+                throw new ArgumentNullException("Opponent Cannot Be Null");
+            else if (opponent == this)
+                throw new ArgumentException("You Cannot Play With Yourself");
             if (rating < 0)
                 throw new ArgumentOutOfRangeException("Rating Cannot Be Less Than 0");
             if (this.CurrentRating <= rating || opponent.CurrentRating <= rating)
