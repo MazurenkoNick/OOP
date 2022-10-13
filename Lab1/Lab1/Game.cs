@@ -25,7 +25,7 @@ namespace Lab1
             this.status = status;
             this.rating = rating;   
             this.opponentName = opponentName;
-            gamesCount = gameId++;
+            gamesCount++;
         }
 
         public Game(int gameId, Status status, int rating, string opponentName)
@@ -34,7 +34,6 @@ namespace Lab1
             this.status = status;
             this.rating = rating;
             this.opponentName = opponentName;
-            gamesCount = gameId++;
         }
 
         public int GameId { get { return gameId; } }
