@@ -14,7 +14,7 @@ namespace Lab1.games
 
     public class GameFactory
     {
-        public static Game getGame(GameType type, double rating) 
+        public static Game GetGame(GameType type, double rating) 
         {
             Game game;
             
