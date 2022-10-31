@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Lab1.accounts;
+using Lab1.games;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,13 +59,20 @@ namespace Lab2
             games.Add(game);
         }
 
-        public void WinGame(GameAccount opponent, Game game)
+        public void WinGame(Game game, GameAccount? opponent=null)
         {
-            int rating = game.Rating;
+            double rating = game.Rating;
 
             // handle possible edge cases
-            if (opponent == null)
-                throw new ArgumentNullException("Opponent Cannot Be Null");
+            if (opponent is null) {
+                // opponent is allowed to be null only if it's game that has type of "GameWithBot".
+                // In this case, opponent will be set to the bot
+                if (game.GetType() == typeof(GameWithBot)) 
+                {
+                    opponent = GameWithBot.Bot;
+                }
+                else throw new ArgumentNullException("Opponent Cannot Be Null");
+            }
             else if (opponent == this)
                 throw new ArgumentException("You Cannot Play With Yourself");
             if (rating < 0)
@@ -86,9 +95,17 @@ namespace Lab2
             opponent.addGameToList(game);
         }
 
-        public void LoseGame(GameAccount opponent, Game game)
+        public void LoseGame(Game game, GameAccount? opponent=null)
         {
-            opponent.WinGame(this, game);
+            // opponent is allowed to be null only if it's game that has type of "GameWithBot".
+            // In this case, opponent will be set to the bot
+            if (game.GetType() == typeof(GameWithBot))
+            {
+                opponent = GameWithBot.Bot;
+            }
+            else throw new ArgumentNullException("Opponent Cannot Be Null");
+
+            opponent.WinGame(game, this);
         }
 
         public void GetStats()

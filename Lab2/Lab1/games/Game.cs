@@ -11,15 +11,16 @@ namespace Lab2
         Lose, Win
     }
 
-    public class Game
+    public abstract class Game
     {
-        private int gameId;
-        private Dictionary<String, Status> players;
-        private int rating;
-        public static int gamesCount;
+        protected int gameId;
+        protected Dictionary<String, Status> players;
+        protected double rating;
+        protected static int gamesCount;
 
-        public Game(int rating)
+        public Game(double rating)
         {
+            if (rating < 0) throw new ArgumentOutOfRangeException();
             this.players = new Dictionary<String, Status>();
             this.gameId = gamesCount;
             this.rating = rating;   
@@ -28,7 +29,7 @@ namespace Lab2
 
         public int GameId { get { return gameId; } }
 
-        public int Rating { get { return rating; } }
+        public double Rating { get { return rating; } }
 
         public Dictionary<String, Status> Players
         {
@@ -36,11 +37,10 @@ namespace Lab2
 
         }
 
-        internal void RegisterPlayers(GameAccount winner, GameAccount loser) 
+        internal void RegisterPlayers(GameAccount winner, GameAccount loser)
         {
             players.Add(winner.UserName, Status.Win);
             players.Add(loser.UserName, Status.Lose);
-
         }
 
         private String PlayersToString()
