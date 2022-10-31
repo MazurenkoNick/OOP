@@ -48,19 +48,13 @@ namespace Lab2
 
         public List<Game> Games { get { return games; } }
 
+        protected abstract void AddRating(double rating);
+
+        protected abstract void SubtractRating(double rating);
+
         private void addGameToList(Game game)
         {
             games.Add(game);
-        }
-
-        protected virtual void AddRating(double rating)
-        {
-            this.currentRating += rating;
-        }
-
-        protected virtual void SubtractRating(double rating)
-        {
-            this.currentRating -= rating;
         }
 
         public void WinGame(GameAccount opponent, Game game)
@@ -78,7 +72,7 @@ namespace Lab2
                 throw new ArgumentOutOfRangeException("All Players Must Have More Than " + rating + " Rating");
 
             // register users (add them to the game)
-            game.registerPlayers(this, opponent);
+            game.RegisterPlayers(this, opponent);
 
             // increment player's total amount of games played
             // & add bet to the player's rating & add game for the current player 

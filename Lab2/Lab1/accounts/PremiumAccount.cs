@@ -15,14 +15,16 @@ namespace Lab1.accounts
 
         protected override void AddRating(double rating)
         {
-            // premium account receives additional 15% from the bet
-            this.currentRating += (rating + (0.15 * rating));
+            // premium account receives additional 25% from the bet
+            double newRating = rating + (0.25 * rating);
+            this.currentRating += newRating;
         }
 
         protected override void SubtractRating(double rating)
         {
             // premium account loses only 85% of the bet
-            this.currentRating -= (rating - (0.15 * rating));
+            double newRating = rating - (0.15 * rating);
+            this.currentRating -= newRating;
         }
     }
 }

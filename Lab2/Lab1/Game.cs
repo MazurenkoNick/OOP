@@ -30,20 +30,20 @@ namespace Lab2
 
         public int Rating { get { return rating; } }
 
-        private Dictionary<String, Status> Players
+        public Dictionary<String, Status> Players
         {
             get { return players; }
 
         }
 
-        public void registerPlayers(GameAccount winner, GameAccount loser) 
+        internal void RegisterPlayers(GameAccount winner, GameAccount loser) 
         {
             players.Add(winner.UserName, Status.Win);
             players.Add(loser.UserName, Status.Lose);
 
         }
 
-        private String playersToString()
+        private String PlayersToString()
         {
             String output = "";
             foreach(KeyValuePair<String, Status> pair in players)
@@ -59,7 +59,7 @@ namespace Lab2
             sb.Append("Game("); 
             sb.Append("id: ").Append(gameId.ToString()).Append(", ");
             sb.Append("rating (bet): ").Append(rating.ToString()).Append(", ");
-            sb.Append("players: [").Append(playersToString()).Append("]");
+            sb.Append("players: [").Append(PlayersToString()).Append("]");
             
             return sb.ToString();
         }
