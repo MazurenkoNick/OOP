@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1
+namespace Lab2
+
 {
     public class GameAccount
     {
@@ -61,7 +62,7 @@ namespace Lab1
                 throw new ArgumentException("You Cannot Play With Yourself");
             if (rating < 0)
                 throw new ArgumentOutOfRangeException("Rating Cannot Be Less Than 0");
-            if (this.CurrentRating <= rating || opponent.CurrentRating <= rating)
+            else if (this.CurrentRating <= rating || opponent.CurrentRating <= rating)
                 throw new ArgumentOutOfRangeException("All Players Must Have More Than " + rating + " Rating");
 
             // increment player's total amount of games played

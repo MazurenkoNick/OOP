@@ -1,6 +1,6 @@
-﻿using Lab1;
+﻿using Lab2;
 
-// default for currentRaing = 100
+// default for currentRating = 100
 GameAccount user1 = new GameAccount("player1");
 GameAccount user2 = new GameAccount("player2");
 
