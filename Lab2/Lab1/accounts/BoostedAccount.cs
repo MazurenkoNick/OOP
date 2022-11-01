@@ -13,10 +13,21 @@ namespace Lab1.accounts
         {
         }
 
-        private int getWinStrick()
+        private int getWinStreack()
         {
-            int totalGames = games.Count;
+            int totalGames;
             int counter = 0;
+
+            if (games.Count < 20)
+            {
+                totalGames = games.Count;
+            }
+            else
+            {
+                totalGames = 20;
+            }
+
+            var last20 = games.TakeLast(20);
 
             while (counter < totalGames)
             {
@@ -34,7 +45,7 @@ namespace Lab1.accounts
         private double GetTotalRating(double rating)
         {
             double totalRating;
-            int winStrick = getWinStrick();
+            int winStrick = getWinStreack();
             if (winStrick >= 20) {
                 // plus 50% of the bet if player has at least 20 wins in a row
                 totalRating = rating + (rating * 0.5);

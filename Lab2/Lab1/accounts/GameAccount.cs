@@ -13,7 +13,6 @@ namespace Lab2
     {
         protected string userName;
         protected double currentRating;
-        protected int gamesCount;
         protected List<Game> games;
 
         public GameAccount(string userName, int currentRating=100) 
@@ -46,7 +45,7 @@ namespace Lab2
             }
         }
 
-        public int GamesCount { get { return gamesCount; } }
+        public int GamesCount { get { return games.Count; } }
 
         public List<Game> Games { get { return games; } }
 
@@ -73,8 +72,9 @@ namespace Lab2
                 }
                 else throw new ArgumentNullException("Opponent Cannot Be Null");
             }
-            else if (opponent == this)
+            else if (opponent == this) 
                 throw new ArgumentException("You Cannot Play With Yourself");
+             
             if (rating < 0)
                 throw new ArgumentOutOfRangeException("Rating Cannot Be Less Than 0");
             else if (this.currentRating <= rating || opponent.currentRating <= rating)
@@ -85,12 +85,10 @@ namespace Lab2
 
             // increment player's total amount of games played
             // & add bet to the player's rating & add game for the current player 
-            this.gamesCount++;
             this.AddRating(rating);
             this.addGameToList(game);
 
             // do the same thing for the opponent, except subtract bet from opponent's current rating
-            opponent.gamesCount++;
             opponent.SubtractRating(rating);
             opponent.addGameToList(game);
         }
@@ -111,7 +109,7 @@ namespace Lab2
         public void GetStats()
         {
             Console.WriteLine(userName + " stats:");
-            Console.WriteLine("gamesCount: " + gamesCount + ", current rating: " + currentRating);
+            Console.WriteLine("gamesCount: " + GamesCount + ", current rating: " + currentRating);
             foreach (Game game in games)
             {
                 Console.WriteLine(game);
